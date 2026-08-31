@@ -1,4 +1,10 @@
 import java.util.Scanner;
+/*BY: Paula Moschioni
+Given an input string s and a pattern p, implement regular expression matching with support for '.' and '*' where:
+'.' Matches any single character.​​​​
+'*' Matches zero or more of the preceding element.
+Return a boolean indicating whether the matching covers the entire input string (not partial). 
+-LEETCODE- */
 class IsMatch{
     public static boolean isMatch(String s, String p) {
          int tamS = s.length();
@@ -31,7 +37,7 @@ class IsMatch{
             char repLetter; // variable to show the letter that is repeating
             char aloneLetter;
             j = i + 1;
-            
+
             while(stop){  // lace to check if there is repeating
                 if(s.charAt(j) == s.charAt(j-1)){   //if is repeating, how many times and which letter?
                     rep++;
