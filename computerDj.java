@@ -7,23 +7,38 @@ import java.util.Scanner;
  * Paula Moschioni, 08/10/2026
  */
 class computerDj{
-    public static String queries(int k, String array[]){
-        boolean found = false;
-        String key = new String();
+    public static String queries(int k, String titles[]){
+        int N = titles.length;      //N songs
 
-        for(int i = 0; i < k; i++){
-            if(i == k - 1){
-                key = array[i];
-            }
+        //search the correct block
+        int size = 1;
+        long position = k;
+        long wordsBlock = N;
+        while(position > (wordsBlock*size)){
+            position = position - (wordsBlock*size);
+            size++;
+            wordsBlock = wordsBlock * N;
         }
-        return key;
+
+        //which letter and which word
+        long pos = position - 1;            // posição dentro do bloco, contando do 0
+        long word = pos / size;
+        int letter = (int)(pos % size);
+
+        //which is the real word
+        long divisor = 1;
+        for(int i = 0; i < size - 1 - letter; i++){
+            divisor = divisor * N;
+        }
+        int index = (int)(word/divisor % N);
+
+        return titles[index];
     }
 
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
 
         int N, Q, k;
-        String auxString;
 
         N = sc.nextInt();
         Q = sc.nextInt();
@@ -41,6 +56,7 @@ class computerDj{
                     System.out.println(result);
                 }
 
+                System.out.println(); 
         N = sc.nextInt();
         Q = sc.nextInt();
         }
